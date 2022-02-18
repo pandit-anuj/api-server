@@ -69,9 +69,9 @@ pipeline {
                 echo "submit gcr.io/dtc-feb22-u306/api-server-image:v2.${env.BUILD_ID}"
                 sh "gcloud builds submit -t gcr.io/dtc-feb22-u306/api-server-image:v2.${env.BUILD_ID} ."
                 echo 'Get cluster credentials'
-                sh 'gcloud container clusters get-credentials demo-api-cluster --zone us-central1-c --project dtc-feb22-u306'
+                sh 'gcloud container clusters get-credentials mynewcluster --zone us-central1-c --project dtc-feb22-u306'
                 echo "Update the image to use gcr.io/dtc-feb22-u306/api-server-image:v2.${env.BUILD_ID}"
-                sh "kubectl set image deployment/api-server-image demo-api =gcr.io/dtc-feb22-u306/api-server-image:v2.${env.BUILD_ID}"
+                sh "kubectl set image deployment/api-server-image demo-api=gcr.io/dtc-feb22-u306/api-server-image:v2.${env.BUILD_ID}"
             }
         }            
     }
